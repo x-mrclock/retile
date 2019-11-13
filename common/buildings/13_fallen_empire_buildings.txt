@@ -94,6 +94,7 @@ building_dimensional_fabricator = {
 		owner = { OR = {
 			is_fallen_empire = yes
 			#has_technology = retile_new_fe_tech
+			check_variable = { which = dimensional_fabricator_build_count value > 0 }
 		} }
 	}
 	
@@ -144,6 +145,13 @@ building_dimensional_fabricator = {
 		}
 	}
 	
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+		}
+		text = retile_dimensional_fabricator_effect
+	}
+	
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -169,6 +177,18 @@ building_dimensional_fabricator = {
 			minerals = 500
 		}
 	}
+
+	on_queued = {
+		owner = {
+			subtract_variable = { which = dimensional_fabricator_build_count value = 1 }
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			change_variable = { which = dimensional_fabricator_build_count value = 1 }
+		}
+	}
 }
 
 # Gives Custodians rural production (+4/+10/+10)
@@ -185,6 +205,7 @@ building_nano_forge = {
 		owner = { OR = {
 			is_fallen_empire = yes
 			#has_technology = retile_new_fe_tech
+			check_variable = { which = nano_forge_build_count value > 0 }
 		} }
 	}
 	
@@ -223,6 +244,13 @@ building_nano_forge = {
 		}
 	}
 	
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+		}
+		text = retile_nano_forge_effect
+	}
+	
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -231,6 +259,18 @@ building_nano_forge = {
 		}
 		upkeep = {
 			energy = 50
+		}
+	}
+	
+	on_queued = {
+		owner = {
+			subtract_variable = { which = nano_forge_build_count value = 1 }
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			change_variable = { which = nano_forge_build_count value = 1 }
 		}
 	}
 }
@@ -249,6 +289,7 @@ building_class_4_singularity = {
 		owner = { OR = {
 			is_fallen_empire = yes
 			#has_technology = retile_new_fe_tech
+			check_variable = { which = class_4_singularity_build_count value > 0 }
 		} }
 	}
 	
@@ -287,6 +328,13 @@ building_class_4_singularity = {
 		}
 	}
 	
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+		}
+		text = retile_class_4_singularity_effect
+	}
+	
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -295,6 +343,18 @@ building_class_4_singularity = {
 		}
 		upkeep = {
 			energy = 50
+		}
+	}
+	
+	on_queued = {
+		owner = {
+			subtract_variable = { which = class_4_singularity_build_count value = 1 }
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			change_variable = { which = class_4_singularity_build_count value = 1 }
 		}
 	}
 }
@@ -314,6 +374,7 @@ building_empyrean_shrine = { # Spiritualist
 		owner = { OR = {
 			is_fallen_empire = yes
 			#has_technology = retile_new_fe_tech
+			check_variable = { which = empyrean_shrine_build_count value > 0 }
 		} }
 	}
 	
@@ -352,6 +413,13 @@ building_empyrean_shrine = { # Spiritualist
 		}
 	}
 	
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+		}
+		text = retile_empyrean_shrine_effect
+	}
+	
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -360,6 +428,17 @@ building_empyrean_shrine = { # Spiritualist
 		}
 		upkeep = {
 			energy = 50
+		}
+	}
+	on_queued = {
+		owner = {
+			subtract_variable = { which = empyrean_shrine_build_count value = 1 }
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			change_variable = { which = empyrean_shrine_build_count value = 1 }
 		}
 	}
 }
@@ -414,6 +493,13 @@ building_master_archive = { # Materialist
 			job_custodian_add = -4
 			job_fe_custodian_add = 4
 		}
+	}
+	
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+		}
+		text = retile_master_archive_effect
 	}
 	
 	resources = {
@@ -480,6 +566,13 @@ building_fe_xeno_zoo = { # Xenophile
 		}
 	}
 	
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+		}
+		text = retile_fe_xeno_zoo_effect
+	}
+	
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -506,6 +599,7 @@ building_fe_dome = {
 		owner = { OR = {
 			is_fallen_empire = yes
 			#has_technology = retile_new_fe_tech
+			check_variable = { which = skydome_build_count value > 0 }
 		} }
 	}
 	
@@ -545,6 +639,13 @@ building_fe_dome = {
 		}
 	}
 	
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+		}
+		text = retile_fe_dome_effect
+	}
+	
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -553,6 +654,18 @@ building_fe_dome = {
 		}
 		upkeep = {
 			energy = 50
+		}
+	}
+	
+	on_queued = {
+		owner = {
+			subtract_variable = { which = skydome_build_count value = 1 }
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			change_variable = { which = skydome_build_count value = 1 }
 		}
 	}
 }
