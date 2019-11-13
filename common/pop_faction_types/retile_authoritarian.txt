@@ -1,0 +1,671 @@
+##############################
+# Authoritarian Faction
+##############################
+
+totalitarian = {
+	election_header = "GFX_faction_header_yellow"
+	guiding_ethic = ethic_authoritarian
+	
+	unique = yes
+	support_multiplier = 1
+	
+	resources = {
+		category = pop_factions
+		produces = {
+			influence = 2
+		}		
+	}
+
+	is_potential = {
+		years_passed > 10
+		has_encountered_other_species = yes
+		NOT = { has_ethic = ethic_gestalt_consciousness }
+	}
+	
+	parameters = {
+		empire = {
+			type = country
+			valid_objects = {
+				is_same_value = root
+			}
+		}
+	}
+	
+	can_join_pre_triggers = {
+		is_enslaved = no
+		is_being_purged = no
+	}
+	
+	can_join_faction = {
+		is_shackled_robot = no
+		has_culture_shock = no
+		NOT = { has_trait = trait_nerve_stapled }
+		OR = {
+			has_ethic = ethic_authoritarian
+			has_ethic = ethic_fanatic_authoritarian
+		}
+	}
+	
+	attraction = {
+		base = 150
+		
+		modifier = {
+			factor = 1.25
+			is_pop_category = ruler
+		}
+		
+		modifier = {
+			factor = 0.75
+			is_pop_category = worker
+		}
+		
+		modifier = {
+			factor = 0.50
+			has_citizenship_rights = no
+		}
+	}
+	
+	leader = {
+		base = 100
+		
+		modifier = {
+			factor = 0.0
+			is_event_leader = yes
+		}
+	}
+	
+	# Wants an Empire
+	demand = {
+		title = "AUTHORITARIAN_EMPIRE"
+		unfulfilled_title = "AUTHORITARIAN_NO_EMPIRE"
+		desc = "AUTHORITARIAN_EMPIRE_DESC"
+
+		fulfilled_effect = 20
+		unfulfilled_effect = -1
+
+		potential = { exists = owner }
+
+		trigger = {
+			owner = { has_authority = auth_imperial }
+		}
+	}
+	
+	# Wants State Police Policy
+	demand = { 
+		title = "AUTHORITARIAN_STATE_POLICE"
+		unfulfilled_title = "AUTHORITARIAN_NO_STATE_POLICE"
+		desc = "AUTHORITARIAN_STATE_POLICE_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -1
+
+		potential = {exists = owner }
+
+		trigger = {
+			owner = { has_policy_flag = criminal_state_police }
+		}
+	}
+	
+	# Wants Priority Healthcare Policy
+	demand = { 
+		title = "AUTHORITARIAN_PRIORITY_HEALTHCARE"
+		unfulfilled_title = "AUTHORITARIAN_NO_PRIORITY_HEALTHCARE"
+		desc = "AUTHORITARIAN_PRIORITY_HEALTHCARE_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -1
+
+		potential = { exists = owner }
+
+		trigger = {
+			owner = { has_policy_flag = healthcare_for_profit }
+		}
+	}
+	
+	# Wants Public Education Policy
+	demand = { 
+		title = "AUTHORITARIAN_PUBLIC_EDUCATION"
+		unfulfilled_title = "AUTHORITARIAN_NO_PUBLIC_EDUCATION"
+		desc = "AUTHORITARIAN_PUBLIC_EDUCATION_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -1
+
+		potential = { exists = owner }
+
+		trigger = {
+			owner = { has_policy_flag = education_public_private }
+		}
+	}
+	
+	# Wants Appropriation
+	demand = { 
+		title = "AUTHORITARIAN_APPROPRIATION_ALLOWED"
+		unfulfilled_title = "AUTHORITARIAN_NO_APPROPRIATION_ALLOWED"
+		desc = "AUTHORITARIAN_APPROPRIATION_ALLOWED_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -1
+
+		potential = { exists = owner }
+
+		trigger = {
+			owner = { has_policy_flag = appropriation_allowed }
+		}
+	}
+
+	# Wants AI Servitude
+	demand = { 
+		title = "AUTHORITARIAN_AI_SERVITUDE"
+		unfulfilled_title = "AUTHORITARIAN_NO_AI_SERVITUDE"
+		desc = "AUTHORITARIAN_AI_SERVITUDE_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -1
+
+		potential = {
+			exists = owner
+			can_set_ai_policy = yes
+		}
+
+		trigger = {
+			owner = { has_policy_flag = ai_servitude }
+		}
+	}
+	
+	# Wants Ony Citizen Refugees
+	demand = { 
+		title = "AUTHORITARIAN_CITIZEN_REFUGEES"
+		unfulfilled_title = "AUTHORITARIAN_NO_CITIZEN_REFUGEES"
+		desc = "AUTHORITARIAN_CITIZEN_REFUGEES_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -1
+
+		potential = {
+			exists = owner
+			has_encountered_other_species = yes
+		}
+
+		trigger = {
+			owner = { has_policy_flag = refugees_only_citizens }
+		}
+	}
+	
+	# Wants Slavery Allowed
+	demand = { 
+		title = "AUTHORITARIAN_SLAVERY"
+		unfulfilled_title = "AUTHORITARIAN_NO_SLAVERY"
+		desc = "AUTHORITARIAN_SLAVERY_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -1
+
+		potential = {
+			exists = owner
+			NOT = { is_subject_type = signatory }
+		}
+
+		trigger = {
+			owner = { has_policy_flag = slavery_allowed }
+		}
+	}
+	
+	# Wants Anti-Crime Campaign
+	demand = { 
+		title = "AUTHORITARIAN_ANTICRIME_CAMPAIGN"
+		unfulfilled_title = "AUTHORITARIAN_NO_ANTICRIME_CAMPAIGN"
+		desc = "AUTHORITARIAN_ANTICRIME_CAMPAIGN_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -1
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = { has_edict = anticrime_campaign }
+		}
+	}
+	
+	# Wants Propaganda
+	demand = { 
+		title = "AUTHORITARIAN_PROPAGANDA"
+		unfulfilled_title = "AUTHORITARIAN_NO_PROPAGANDA"
+		desc = "AUTHORITARIAN_PROPAGANDA_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -1
+
+		potential = {
+			exists = owner
+			has_tradition = tr_domination_workplace_motivators
+		}
+
+		trigger = {
+			owner = { has_edict = information_quarantine }
+		}
+	}
+	
+	# Wants a Subject
+	demand = {
+		title = "AUTHORITARIAN_OVERLORD"
+		unfulfilled_title = "AUTHORITARIAN_NO_OVERLORD"
+		desc = "AUTHORITARIAN_OVERLORD_DESC"
+
+		fulfilled_effect = 20
+		unfulfilled_effect = -1
+
+		potential = {
+			exists = owner
+			owner = { num_communications > 2 }
+		}
+
+		trigger = {
+			owner = { is_overlord = yes }
+		}
+	}
+	
+	# Wants Stratified Society
+	demand = {
+		title = "AUTHORITARIAN_STRATIFICATION"
+		unfulfilled_title = "AUTHORITARIAN_NO_STRATIFICATION"
+		desc = "AUTHORITARIAN_STRATIFICATION_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -1
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				any_owned_pop = { has_living_standard = { type = living_standard_stratified } }
+			}
+		}
+	}
+	
+	# Wants Slaves
+	demand = {
+		title = "AUTHORITARIAN_SLAVES"
+		unfulfilled_title = "AUTHORITARIAN_NO_SLAVES"
+		desc = "AUTHORITARIAN_SLAVES_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -1
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				any_owned_pop = { has_citizenship_type = { type = citizenship_slavery } }
+			}
+		}
+	}
+	
+	# Hates Democracy
+	demand = {
+		title = "AUTHORITARIAN_DEMOCRACY"
+		unfulfilled_title = "AUTHORITARIAN_NO_DEMOCRACY"
+		desc = "AUTHORITARIAN_DEMOCRACY_DESC"
+
+		fulfilled_effect = 1
+		unfulfilled_effect = -20
+
+		potential = { exists = owner }
+
+		trigger = {
+			owner = { NOT = { has_authority = auth_democratic } }
+		}
+	}
+	
+	# Hates Universal Healthcare
+	demand = {
+		title = "AUTHORITARIAN_UNIVERSAL_HEALTHCARE"
+		unfulfilled_title = "AUTHORITARIAN_NO_UNIVERSAL_HEALTHCARE"
+		desc = "AUTHORITARIAN_UNIVERSAL_HEALTHCARE_DESC"
+
+		fulfilled_effect = 1
+		unfulfilled_effect = -10
+
+		potential = { exists = owner }
+
+		trigger = {
+			owner = { NOT = { has_policy_flag = healthcare_universal } }
+		}
+	}
+	
+	# Hates Education For All
+	demand = {
+		title = "AUTHORITARIAN_EDUCATION_FOR_ALL"
+		unfulfilled_title = "AUTHORITARIAN_NO_EDUCATION_FOR_ALL"
+		desc = "AUTHORITARIAN_EDUCATION_FOR_ALL_DESC"
+
+		fulfilled_effect = 1
+		unfulfilled_effect = -10
+
+		potential = { exists = owner }
+
+		trigger = {
+			owner = { NOT = { has_policy_flag = education_for_all } }
+		}
+	}
+	
+	# Hates No Appropriation
+	demand = {
+		title = "AUTHORITARIAN_APPROPRIATION_NOT_ALLOWED"
+		unfulfilled_title = "AUTHORITARIAN_NO_APPROPRIATION_NOT_ALLOWED"
+		desc = "AUTHORITARIAN_APPROPRIATION_NOT_ALLOWED_DESC"
+
+		fulfilled_effect = 1
+		unfulfilled_effect = -10
+
+		potential = { exists = owner }
+
+		trigger = {
+			owner = { NOT = { has_policy_flag = appropriation_not_allowed } }
+		}
+	}
+	
+	# Hates AI Full Rights
+	demand = {
+		title = "AUTHORITARIAN_AI_FULL_RIGHTS"
+		unfulfilled_title = "AUTHORITARIAN_NO_AI_FULL_RIGHTS"
+		desc = "AUTHORITARIAN_APPROPRIATION_AI_FULL_RIGHTS_DESC"
+
+		fulfilled_effect = 1
+		unfulfilled_effect = -10
+
+		potential = { 
+			exists = owner
+			can_set_ai_policy = yes
+		}
+
+		trigger = {
+			owner = { NOT = { has_policy_flag = ai_full_rights } }
+		}
+	}
+	
+	# Hates Slavery Ban
+	demand = {
+		title = "AUTHORITARIAN_SLAVERY_BAN"
+		unfulfilled_title = "AUTHORITARIAN_NO_SLAVERY_BAN"
+		desc = "AUTHORITARIAN_APPROPRIATION_SLAVERY_BAN_DESC"
+
+		fulfilled_effect = 1
+		unfulfilled_effect = -10
+
+		potential = { exists = owner }
+
+		trigger = {
+			owner = { NOT = { has_policy_flag = slavery_not_allowed } }
+		}
+	}
+	
+	# Hates Healthcare Campaign
+	demand = { 
+		title = "AUTHORITARIAN_HEALTHCARE_CAMPAIGN"
+		unfulfilled_title = "AUTHORITARIAN_NO_HEALTHCARE_CAMPAIGN"
+		desc = "AUTHORITARIAN_HEALTHCARE_CAMPAIGN_DESC"
+
+		fulfilled_effect = 1
+		unfulfilled_effect = -10
+
+		potential = {
+			exists = owner
+			has_technology = tech_planetary_unification
+		}
+
+		trigger = {
+			owner = { has_edict = healthcare_campaign }
+		}
+	}
+	
+	# Hates Welfare
+	demand = {
+		title = "AUTHORITARIAN_WELFARE"
+		unfulfilled_title = "AUTHORITARIAN_NO_WELFARE"
+		desc = "AUTHORITARIAN_WELFARE_DESC"
+
+		fulfilled_effect = 1
+		unfulfilled_effect = -10
+
+		potential = { exists = owner }
+
+		trigger = {
+			owner = {
+				NOR = {
+					any_owned_pop = { has_living_standard = { type = living_standard_good } }
+					any_owned_pop = { has_living_standard = { type = living_standard_shared_burden } }
+					any_owned_pop = { has_living_standard = { type = living_standard_utopian } }
+				}
+			}
+		}
+	}
+
+	# Hates Subservience
+	demand = {
+		title = "AUTHORITARIAN_UNDERLING"
+		unfulfilled_title = "AUTHORITARIAN_NO_UNDERLING"
+		desc = "AUTHORITARIAN_UNDERLING_DESC"
+
+		fulfilled_effect = 1
+		unfulfilled_effect = -20
+
+		potential = { exists = owner }
+
+		trigger = {
+			owner = { NOT = { is_subject = yes } }
+		}
+	}
+	
+	on_create = {
+		pop_faction_event = { id = factions.1 }
+	}
+
+	on_destroy = {
+		if = {
+			limit = {
+				has_modifier = promoted_authoritarian
+			}
+			remove_modifier = promoted_authoritarian
+		}
+		if = {
+			limit = {
+				has_modifier = suppressed_authoritarian
+			}
+			remove_modifier = suppressed_authoritarian
+		}
+	}
+
+	actions = {
+		embrace_faction = {
+			title = "EMBRACE_FACTION"
+			description = "EMBRACE_FACTION_DESC"
+			
+			cost = {
+				influence = 500
+			}
+			
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_subject = no
+						NOT = { is_subject_type = dominion }
+					}
+				}
+			}
+			
+			valid = {
+				custom_tooltip = {
+					fail_text = EMBRACE_FACTION_COOLDOWN
+					parameter:empire = {
+						NOT = { has_modifier = embraced_faction_timer }
+					}
+				}
+				support > 0.20
+				parameter:empire = {
+					NOT = { has_ethic = "ethic_fanatic_authoritarian" }
+				}
+			}
+
+			effect = {
+				add_modifier = { modifier = embraced_faction days = 3600 }
+				parameter:empire = {
+					shift_ethic = ethic_authoritarian
+					hidden_effect = {
+						add_modifier = { modifier = embraced_faction_timer days = 3600 }
+						every_pop_faction = {
+							limit = { NOT = { is_same_value = root } }
+							add_modifier = { modifier = embraced_another_faction days = 3600 }
+						}
+					}
+				}
+				hidden_effect = {
+					save_event_target_as = TargetFaction
+					parameter:empire = {
+						every_relation = {
+							limit = {
+								is_ai = no
+								is_country_type = default			
+								has_communications = prev
+							}
+							country_event = { id = factions.2000 }
+						}
+					}				
+				}				
+			}
+			
+			ai_weight = {
+				base = 1
+				modifier = {
+					factor = 0
+					support < 0.50
+					owner = {
+						has_ethic = ethic_authoritarian
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = { has_valid_civic = civic_fanatic_purifiers }
+				}				
+				modifier = {
+					factor = 0
+					NOT = { 
+						owner = {
+							exists = ruler
+							ruler = {
+								leader_of_faction = totalitarian
+							}
+						}
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = {
+						count_pop_factions = {
+							count < 4
+						}					
+					}
+				}
+			}
+		}
+		promote_faction = {
+			title = "PROMOTE_FACTION"
+			description = "PROMOTE_FACTION_DESC"
+			
+			potential = {
+				exists = owner
+				parameter:empire = {
+					NOR = {
+						has_modifier = suppressed_authoritarian
+						has_modifier = promoted_authoritarian
+					}
+				}
+			}
+
+			effect = {
+				parameter:empire = {
+					add_modifier = { modifier = promoted_authoritarian days = -1 }
+				}
+			}
+			
+			ai_weight = {
+				base = 0
+			}
+		}
+		cancel_promote_faction = {
+			title = "CANCEL_PROMOTE_FACTION"
+			description = "CANCEL_PROMOTE_FACTION_DESC"
+			
+			potential = {
+				exists = owner
+				parameter:empire = {
+					has_modifier = promoted_authoritarian
+				}
+			}
+
+			effect = {
+				parameter:empire = {
+					remove_modifier = promoted_authoritarian
+				}
+			}
+			
+			ai_weight = {
+				base = 0
+			}
+		}
+		suppress_faction = {
+			title = "SUPPRESS_FACTION"
+			description = "SUPPRESS_FACTION_DESC"
+			
+			potential = {
+				exists = owner
+				parameter:empire = {
+					NOR = {
+						has_modifier = suppressed_authoritarian
+						has_modifier = promoted_authoritarian
+					}
+				}
+			}
+
+			effect = {
+				add_modifier = { modifier = suppressed_faction days = -1 }
+				parameter:empire = {
+					add_modifier = { modifier = suppressed_authoritarian days = -1 }
+				}
+			}
+			
+			ai_weight = {
+				base = 0
+			}
+		}
+		cancel_suppress_faction = {
+			title = "CANCEL_SUPPRESS_FACTION"
+			description = "CANCEL_SUPPRESS_FACTION_DESC"
+			
+			potential = {
+				exists = owner
+				parameter:empire = {
+					has_modifier = suppressed_authoritarian
+				}
+			}
+
+			effect = {
+				remove_modifier = suppressed_faction
+				parameter:empire = {
+					remove_modifier = suppressed_authoritarian
+				}
+			}
+			
+			ai_weight = {
+				base = 0
+			}
+		}
+	}
+}
