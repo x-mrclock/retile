@@ -413,7 +413,7 @@ patrol_drone = {
 		}		
 	}
 	
-	triggered_planet_modifier = {
+	triggered_pop_modifier = {
 		potential = {
 			exists = owner
 			owner = { has_policy_flag = criminal_common_law }
@@ -645,7 +645,7 @@ mining_drone = {
 	}
 
 
-	triggered_planet_modifier = {
+	triggered_pop_modifier = {
 		potential = {
 			exists = owner
 			owner = { has_civic = civic_warrior_culture }
@@ -736,7 +736,7 @@ agri_drone = {
 		modifier = { planet_amenities_no_happiness_add = 60 }
 	}
 
-	triggered_planet_modifier = {
+	triggered_pop_modifier = {
 		potential = {
 			exists = owner
 			owner = { has_civic = civic_warrior_culture }
@@ -823,7 +823,7 @@ technician_drone = {
 		modifier = { planet_amenities_no_happiness_add = 60 }
 	}
 
-	triggered_planet_modifier = {
+	triggered_pop_modifier = {
 		potential = {
 			exists = owner
 			owner = { has_civic = civic_warrior_culture }
@@ -1010,7 +1010,7 @@ maintenance_drone = {
 		modifier = { planet_amenities_no_happiness_add = 30 }
 	}
 
-	triggered_planet_modifier = {
+	triggered_pop_modifier = {
 		potential = {
 			exists = owner
 			owner = { has_civic = civic_warrior_culture }
